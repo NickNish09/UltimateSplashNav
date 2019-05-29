@@ -19,7 +19,8 @@ class SignUp extends Component {
       password: "",
       password_confirmation: "",
       firsName: "",
-      nickName: ""
+      nickName: "",
+      isSigninInProgress: false
     }
   }
 
@@ -38,6 +39,7 @@ class SignUp extends Component {
     const password = this.state.password;
     const name = this.state.firstName;
     const nick_name = this.state.nickName;
+    this.setState({isSigninInProgress: true});
     // this.setState({spinner: true});
 
     if(email !== "" && password !== "" && name !== "" && nick_name !== ""){
@@ -55,15 +57,18 @@ class SignUp extends Component {
             ToastAndroid.show('Cadastro feito com sucesso! Entrando...', ToastAndroid.SHORT);
             self.setCentralState({ user: response.data, userSignedIn: true });
             self.signInSuccess(response.data.token);
+            this.setState({isSigninInProgress: false});
             // self.setState({spinner: false});
           })
           .catch(function (error) {
             ToastAndroid.show('Erro ao se cadastrar', ToastAndroid.SHORT);
             console.log('erro: '+error);
+            this.setState({isSigninInProgress: false});
             // self.setState({spinner: false});
           });
       } catch (err) {
-        console.log('error:', err)
+        console.log('error:', err);
+        this.setState({isSigninInProgress: false});
       }
     } else {
       Alert.alert(
@@ -73,7 +78,8 @@ class SignUp extends Component {
           {text: 'OK', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
         ],
         { cancelable: true }
-      )
+      );
+      this.setState({isSigninInProgress: false});
     }
   };
 
@@ -206,6 +212,7 @@ class SignUp extends Component {
             marginHorizontal: 15,
             marginVertical: 10
           }}
+          disabled={this.state.isSigninInProgress}
           titleStyle={{ color: "black" }}
           onPress={() => {
             if(this.state.password === this.state.password_confirmation){
