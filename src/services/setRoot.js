@@ -30,7 +30,7 @@ const bottomTabs = {
             textColor: "white",
             selectedTextColor: colors.secondary,
             selectedIconColor: colors.secondary,
-            icon: require("../assets/icons/thumbs_up_white.png"),
+            icon: require("../assets/icons/trophy-icon.png"),
           }
         }
       }
@@ -62,7 +62,7 @@ const bottomTabs = {
             textColor: "white",
             selectedTextColor: colors.secondary,
             selectedIconColor: colors.secondary,
-            icon: require("../assets/icons/history_white.png"),
+            icon: require("../assets/icons/gift-icon.png"),
           }
         }
       }
@@ -94,7 +94,7 @@ const bottomTabs = {
             textColor: "white",
             selectedTextColor: colors.secondary,
             selectedIconColor: colors.secondary,
-            icon: require("../assets/icons/user_white.png"),
+            icon: require("../assets/icons/shop-icon.png"),
           }
         }
       }
