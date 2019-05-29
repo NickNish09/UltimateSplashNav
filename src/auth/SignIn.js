@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {View, Text, Switch, ToastAndroid, Alert} from "react-native";
+import {View, Text, ToastAndroid, Alert, ActivityIndicator } from "react-native";
 import styles from "./Styles";
 import { colors, fonts } from "../styles/base";
 import {Input, Divider, Button } from "react-native-elements";
@@ -176,7 +176,7 @@ class SignIn extends Component {
 
         <Divider style={{ marginVertical: 20, marginHorizontal: 10 }} />
 
-        <Button
+        {!this.state.isSigninInProgress ? <Button
           title="Entrar"
           buttonStyle={{
             backgroundColor: colors.secondary,
@@ -186,7 +186,7 @@ class SignIn extends Component {
           disabled={this.state.isSigninInProgress}
           titleStyle={{ color: "black" }}
           onPress={() => this.signInClassic().done()}
-        />
+        /> : <ActivityIndicator size="large" color={colors.primary} />}
 
         <View
           style={{

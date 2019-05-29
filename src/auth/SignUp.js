@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styles from "./Styles";
-import { View, ToastAndroid, Alert } from "react-native";
+import {View, ToastAndroid, Alert, ActivityIndicator} from "react-native";
 import { colors, fonts } from "../styles/base";
 import { Input, Text, Divider, Button } from "react-native-elements";
 import api from "../services/api";
@@ -205,30 +205,32 @@ class SignUp extends Component {
 
         <Divider style={{ marginVertical: 20, marginHorizontal: 10 }} />
 
-        <Button
-          title="Fazer cadastro"
-          buttonStyle={{
-            backgroundColor: colors.secondary,
-            marginHorizontal: 15,
-            marginVertical: 10
-          }}
-          disabled={this.state.isSigninInProgress}
-          titleStyle={{ color: "black" }}
-          onPress={() => {
-            if(this.state.password === this.state.password_confirmation){
-              self.signUp().done();
-            } else {
-              Alert.alert(
-                'Senhas não conferem',
-                `Redigite sua senha e confirmação`,
-                [
-                  {text: 'OK', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-                ],
-                { cancelable: true }
-              )
-            }
-          }}
-        />
+        {!this.state.isSigninInProgress ?
+          <Button
+            title="Fazer cadastro"
+            buttonStyle={{
+              backgroundColor: colors.secondary,
+              marginHorizontal: 15,
+              marginVertical: 10
+            }}
+            disabled={this.state.isSigninInProgress}
+            titleStyle={{ color: "black" }}
+            onPress={() => {
+              if(this.state.password === this.state.password_confirmation){
+                self.signUp().done();
+              } else {
+                Alert.alert(
+                  'Senhas não conferem',
+                  `Redigite sua senha e confirmação`,
+                  [
+                    {text: 'OK', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                  ],
+                  { cancelable: true }
+                )
+              }
+            }}
+          /> : <ActivityIndicator size="large" color={colors.primary} />
+        }
 
       </View>
     );
