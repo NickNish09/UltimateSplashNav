@@ -4,7 +4,7 @@ import { goToAuth, goToHome } from './src/services/setRoot';
 
 export default class App extends Component {
   async componentDidMount(){
-    goToHome()
+    goToHome();
   }
 
   render() {
