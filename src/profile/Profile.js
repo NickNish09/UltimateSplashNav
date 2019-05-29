@@ -35,6 +35,9 @@ class Profile extends Component {
     return (
       <View style={{flex: 1}}>
         <Text>Perfil</Text>
+        <Text>{this.centralState.user.name}</Text>
+        <Text>{this.centralState.user.nick}</Text>
+        <Text>{this.centralState.user.email}</Text>
         <Button
           title="Sign Out"
           rounded

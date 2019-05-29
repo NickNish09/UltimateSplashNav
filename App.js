@@ -1,21 +1,39 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, ImageBackground, View} from 'react-native';
 import { goToAuth, goToHome } from './src/services/setRoot';
 import SplashScreen from "react-native-splash-screen";
+import { CSComponent } from "react-central-state";
 import api from './src/services/api';
 import deviceStorage from "./src/services/storage";
+import {Image} from "react-native-elements";
 
-export default class App extends Component {
+class App extends Component {
 
   async componentDidMount(){
     await this.loadToken();
     api.defaults.headers.common["Authorization"] = this.state.token;
     if(this.state.token !== undefined){
-      goToHome();
+      api.post("v1/token_login.json", {
+        token: this.state.token
+      })
+        .then(response => {
+          console.log(response);
+          this.setCentralState({user: response.data, userSignedIn: true});
+          goToHome();
+        })
+        .catch(err => {
+          console.log(err);
+          this.setCentralState({userSignedIn: false});
+          goToAuth();
+        });
     } else {
       goToAuth();
     }
     SplashScreen.hide();
+  }
+
+  updateWith() {
+    return ["user", "userSignedIn"];
   }
 
   async loadToken() {
@@ -39,9 +57,9 @@ export default class App extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>cafebabe</Text>
+        <ImageBackground source={require('./src/assets/images/splash_background.png')} style={styles.backgroundImage}>
+          <Image style={{height: 100, width: '100%'}} source={require('./src/assets/images/fenix_logo.png')}/>
+        </ImageBackground>
       </View>
     );
   }
@@ -52,7 +70,15 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#06060b',
+  },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover', // or 'stretch'
+    width: '100%',
+    height: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   welcome: {
     fontSize: 20,
@@ -65,3 +91,5 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
 });
+
+export default CSComponent(App)
