@@ -1,6 +1,7 @@
 package com.skinsgratis;
 
 import android.app.Application;
+import org.devio.rn.splashscreen.SplashScreenReactPackage;
 
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
@@ -38,6 +39,7 @@ public class MainApplication extends NavigationApplication {
         // No need to add RnnPackage and MainReactPackage
         return Arrays.<ReactPackage>asList(
             // eg. new VectorIconsPackage()
+            new SplashScreenReactPackage()  //here
         );
     }
 

@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View} from 'react-native';
 import { goToAuth, goToHome } from './src/services/setRoot';
+import SplashScreen from "react-native-splash-screen";
 
 export default class App extends Component {
   async componentDidMount(){
     goToHome();
+    SplashScreen.hide();
   }
 
   render() {
