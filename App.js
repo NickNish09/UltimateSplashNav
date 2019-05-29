@@ -7,7 +7,7 @@ export default class App extends Component {
   async componentDidMount(){
     goToHome();
     setTimeout(
-      SplashScreen.hide()
+      function(){SplashScreen.hide()}
       , 3000);
   }
 
