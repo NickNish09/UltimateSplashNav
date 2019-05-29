@@ -28,10 +28,10 @@ export default class Scratch extends Component {
         <Text>Raspadinha</Text>
         <ScratchView
         id={1} // ScratchView id (Optional)
-        brushSize={32} // Default is 10% of the smallest dimension (width/height)
+        brushSize={30} // Default is 10% of the smallest dimension (width/height)
         threshold={30} // Report full scratch after 70 percentage, change as you see fit. Default is 50
         fadeOut={true} // Disable the fade out animation when scratch is done. Default is true
-        placeholderColor="#AAAAAA" // Scratch color while image is loading (or while image not present)
+        placeholderColor="#aaace0" // Scratch color while image is loading (or while image not present)
         imageUrl="https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Akali_9.jpg" // A url to your image (Optional)
         resourceName="akali" // An image resource name (without the extension like '.png/jpg etc') in the native bundle of the app (drawble for Android, Images.xcassets in iOS) (Optional)
         resizeMode="cover" // Resize the image to fit or fill the scratch view. Default is stretch
