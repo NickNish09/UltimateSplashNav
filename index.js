@@ -1,5 +1,6 @@
 import Home from './src/scratch/Scratch';
 import SignIn from './src/auth/SignIn';
+import SignUp from './src/auth/SignUp';
 import Profile from './src/profile/Profile';
 import Giveaway from './src/giveaway/Giveaway';
 import Sale from './src/sale/Sale';
@@ -10,6 +11,7 @@ import { Navigation } from "react-native-navigation";
 Navigation.registerComponent(`App`, () => App);
 Navigation.registerComponent(`Home`, () => Home);
 Navigation.registerComponent(`SignIn`, () => SignIn);
+Navigation.registerComponent(`SignUp`, () => SignUp);
 Navigation.registerComponent(`Profile`, () => Profile);
 Navigation.registerComponent(`Giveaway`, () => Giveaway);
 Navigation.registerComponent(`Sale`, () => Sale);

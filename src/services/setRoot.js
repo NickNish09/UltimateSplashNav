@@ -141,8 +141,26 @@ const bottomTabs = {
 
 export const goToAuth = () => Navigation.setRoot({
   root: {
-    component: {
-      name: "SignIn"
+    stack: {
+      children: [
+        {
+          component: {
+            name: "SignIn",
+            options: {
+              topBar: {
+                title: {
+                  text: "Entrar",
+                  alignment: "center",
+                  color: 'white'
+                },
+                background: {
+                  color: colors.primary_dark
+                }
+              }
+            }
+          }
+        }
+      ]
     }
   }
 });

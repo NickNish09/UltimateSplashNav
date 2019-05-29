@@ -1,87 +1,64 @@
 import React, { Component } from "react";
-import {View, Text, Switch, ToastAndroid, Alert} from "react-native";
 import styles from "./Styles";
+import { View, ToastAndroid, Alert } from "react-native";
 import { colors, fonts } from "../styles/base";
-import {Input, Divider, Button } from "react-native-elements";
-import { Navigation } from "react-native-navigation";
+import { Input, Text, Divider, Button } from "react-native-elements";
 import api from "../services/api";
 import deviceStorage from "../services/storage";
-import { CSComponent } from "react-central-state";
 import {USER_KEY} from "../services/config";
+import {Navigation} from "react-native-navigation";
+import { CSComponent } from "react-central-state";
 import {goToHome} from "../services/setRoot";
 
-class SignIn extends Component {
-
+class SignUp extends Component {
   constructor(props) {
     super(props);
     Navigation.events().bindComponent(this); // <== Will be automatically unregistered when unmounted
     this.state = {
       email: "",
       password: "",
-      switchValue: false,
-      isSigninInProgress: false,
-      userInfo: {},
+      password_confirmation: "",
+      firsName: "",
+      nickName: ""
     }
-  }
-
-  componentDidMount(){
   }
 
   updateWith() {
     return ["user", "userSignedIn"];
   }
 
-  goToSignUp = () => {
-    Navigation.push(this.props.componentId, {
-      component: {
-        name: "SignUp",
-        options: {
-          topBar: {
-            visible: true,
-            drawBehind: false,
-            animate: true,
-            background: {
-              color: colors.primary_dark
-            },
-            backButton: {
-              color: "white"
-            },
-            title: {
-              text: "Cadastro",
-              color: "white"
-            }
-          }
-        }
-      }
-    });
-  };
-
   signInSuccess(token) {
     deviceStorage.saveItem(USER_KEY, token);
     goToHome();
   }
 
-  signInClassic = async () => {
+  signUp = async () => {
     let self = this;
     const email = this.state.email;
     const password = this.state.password;
+    const name = this.state.firstName;
+    const nick_name = this.state.nickName;
     // this.setState({spinner: true});
 
-    if(email !== "" && password !== ""){
+    if(email !== "" && password !== "" && name !== "" && nick_name !== ""){
       try {
         // login with provider
-        api.post("v1/login.json", {
-          email: email,
-          password: password,
+        api.post("v1/cadastro.json", {
+          user: {
+            email: email,
+            password: password,
+            name: name,
+            nick: nick_name,
+          }
         })
           .then(function (response) {
-            ToastAndroid.show('Autenticação feita com sucesso! Entrando...', ToastAndroid.SHORT);
+            ToastAndroid.show('Cadastro feito com sucesso! Entrando...', ToastAndroid.SHORT);
             self.setCentralState({ user: response.data, userSignedIn: true });
             self.signInSuccess(response.data.token);
             // self.setState({spinner: false});
           })
           .catch(function (error) {
-            ToastAndroid.show('Erro ao se autenticar', ToastAndroid.SHORT);
+            ToastAndroid.show('Erro ao se cadastrar', ToastAndroid.SHORT);
             console.log('erro: '+error);
             // self.setState({spinner: false});
           });
@@ -101,6 +78,8 @@ class SignIn extends Component {
   };
 
   render() {
+    let self = this;
+
     return (
       <View
         style={[
@@ -144,10 +123,40 @@ class SignIn extends Component {
               color: "white",
               marginVertical: 10
             }}
-            inputContainerStyle={{ borderBottomWidth: 0 }}
             underlineColorAndroid="transparent"
+            inputContainerStyle={{ borderBottomWidth: 0 }}
             autoCapitalize="none"
             autoCorrect={false}
+          />
+          <Input
+            placeholder="Nome"
+            onChangeText={firstName => this.setState({ firstName })}
+            value={this.state.firstName}
+            placeholderTextColor="white"
+            inputStyle={{
+              backgroundColor: colors.dark_gray,
+              borderRadius: 5,
+              padding: 10,
+              color: "white",
+              marginVertical: 10
+            }}
+            underlineColorAndroid="transparent"
+            inputContainerStyle={{ borderBottomWidth: 0 }}
+          />
+          <Input
+            placeholder="Nick no Lol"
+            onChangeText={nickName => this.setState({ nickName })}
+            value={this.state.nickName}
+            placeholderTextColor="white"
+            inputStyle={{
+              backgroundColor: colors.dark_gray,
+              borderRadius: 5,
+              padding: 10,
+              color: "white",
+              marginVertical: 10
+            }}
+            underlineColorAndroid="transparent"
+            inputContainerStyle={{ borderBottomWidth: 0 }}
           />
           <Input
             placeholder="Senha"
@@ -161,8 +170,27 @@ class SignIn extends Component {
               color: "white",
               marginVertical: 10
             }}
-            inputContainerStyle={{ borderBottomWidth: 0 }}
             underlineColorAndroid="transparent"
+            inputContainerStyle={{ borderBottomWidth: 0 }}
+            autoCapitalize="none"
+            autoCorrect={false}
+            secureTextEntry
+          />
+
+          <Input
+            placeholder="Confirmar Senha"
+            onChangeText={password_confirmation => this.setState({ password_confirmation })}
+            value={this.state.password_confirmation}
+            placeholderTextColor="white"
+            inputStyle={{
+              backgroundColor: colors.dark_gray,
+              borderRadius: 5,
+              padding: 10,
+              color: "white",
+              marginVertical: 10
+            }}
+            underlineColorAndroid="transparent"
+            inputContainerStyle={{ borderBottomWidth: 0 }}
             autoCapitalize="none"
             autoCorrect={false}
             secureTextEntry
@@ -172,39 +200,32 @@ class SignIn extends Component {
         <Divider style={{ marginVertical: 20, marginHorizontal: 10 }} />
 
         <Button
-          title="Entrar"
+          title="Fazer cadastro"
           buttonStyle={{
             backgroundColor: colors.secondary,
             marginHorizontal: 15,
             marginVertical: 10
           }}
           titleStyle={{ color: "black" }}
-          onPress={() => this.signInClassic().done()}
+          onPress={() => {
+            if(this.state.password === this.state.password_confirmation){
+              self.signUp().done();
+            } else {
+              Alert.alert(
+                'Senhas não conferem',
+                `Redigite sua senha e confirmação`,
+                [
+                  {text: 'OK', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+                ],
+                { cancelable: true }
+              )
+            }
+          }}
         />
 
-        <View
-          style={{
-            justifyContent: "center",
-            paddingHorizontal: 15,
-            marginVertical: 20
-          }}
-        >
-          <Text style={{ color: "white", fontSize: 16 }}>
-            Não tem conta?
-            <Text
-              style={{
-                color: colors.secondary,
-                fontSize: 16
-              }}
-              onPress={this.goToSignUp}
-            >
-               Faça seu cadastro
-            </Text>
-          </Text>
-        </View>
       </View>
     );
   }
 }
 
-export default CSComponent(SignIn);
+export default CSComponent(SignUp);

@@ -2,11 +2,38 @@ import React, {Component} from 'react';
 import { StyleSheet, Text, View} from 'react-native';
 import { goToAuth, goToHome } from './src/services/setRoot';
 import SplashScreen from "react-native-splash-screen";
+import api from './src/services/api';
+import deviceStorage from "./src/services/storage";
 
 export default class App extends Component {
+
   async componentDidMount(){
-    goToHome();
+    await this.loadToken();
+    api.defaults.headers.common["Authorization"] = this.state.token;
+    if(this.state.token !== undefined){
+      goToHome();
+    } else {
+      goToAuth();
+    }
     SplashScreen.hide();
+  }
+
+  async loadToken() {
+    try {
+      const value = await deviceStorage.loadToken();
+      if (value !== null) {
+        this.setState({
+          token: value,
+          loading: false
+        });
+      } else {
+        this.setState({
+          loading: false
+        });
+      }
+    } catch (error) {
+      alert("Erro na sincronização do token", error.message);
+    }
   }
 
   render() {
