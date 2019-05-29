@@ -72,6 +72,38 @@ const bottomTabs = {
         children: [
           {
             component: {
+              name: "Sale",
+              options: {
+                topBar: {
+                  title: {
+                    text: "Loja",
+                    alignment: "center",
+                    color: 'white'
+                  },
+                  background: {
+                    color: colors.primary_dark
+                  }
+                }
+              }
+            }
+          }
+        ],
+        options: {
+          bottomTab: {
+            text: "Loja",
+            textColor: "white",
+            selectedTextColor: colors.secondary,
+            selectedIconColor: colors.secondary,
+            icon: require("../assets/icons/user_white.png"),
+          }
+        }
+      }
+    },
+    {
+      stack: {
+        children: [
+          {
+            component: {
               name: "Profile",
               options: {
                 topBar: {
