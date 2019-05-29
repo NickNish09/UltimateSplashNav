@@ -40,6 +40,38 @@ const bottomTabs = {
         children: [
           {
             component: {
+              name: "Giveaway",
+              options: {
+                topBar: {
+                  title: {
+                    text: "Sorteios",
+                    alignment: "center",
+                    color: 'white'
+                  },
+                  background: {
+                    color: colors.primary_dark
+                  }
+                }
+              }
+            }
+          }
+        ],
+        options: {
+          bottomTab: {
+            text: "Sorteios",
+            textColor: "white",
+            selectedTextColor: colors.secondary,
+            selectedIconColor: colors.secondary,
+            icon: require("../assets/icons/history_white.png"),
+          }
+        }
+      }
+    },
+    {
+      stack: {
+        children: [
+          {
+            component: {
               name: "Profile",
               options: {
                 topBar: {
