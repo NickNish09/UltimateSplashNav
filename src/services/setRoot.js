@@ -44,7 +44,7 @@ const bottomTabs = {
               options: {
                 topBar: {
                   title: {
-                    text: "Sorteios",
+                    text: "Prêmios",
                     alignment: "center",
                     color: 'white'
                   },
@@ -58,7 +58,7 @@ const bottomTabs = {
         ],
         options: {
           bottomTab: {
-            text: "Sorteios",
+            text: "Prêmios",
             textColor: "white",
             selectedTextColor: colors.secondary,
             selectedIconColor: colors.secondary,
