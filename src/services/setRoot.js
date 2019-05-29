@@ -28,8 +28,8 @@ const bottomTabs = {
           bottomTab: {
             text: "Raspadinha",
             textColor: "white",
-            selectedTextColor: colors.secondary,
-            selectedIconColor: colors.secondary,
+            selectedTextColor: colors.primary,
+            selectedIconColor: colors.primary,
             icon: require("../assets/icons/trophy-icon.png"),
           }
         }
@@ -60,8 +60,8 @@ const bottomTabs = {
           bottomTab: {
             text: "Prêmios",
             textColor: "white",
-            selectedTextColor: colors.secondary,
-            selectedIconColor: colors.secondary,
+            selectedTextColor: colors.primary,
+            selectedIconColor: colors.primary,
             icon: require("../assets/icons/gift-icon.png"),
           }
         }
@@ -92,8 +92,8 @@ const bottomTabs = {
           bottomTab: {
             text: "Loja",
             textColor: "white",
-            selectedTextColor: colors.secondary,
-            selectedIconColor: colors.secondary,
+            selectedTextColor: colors.primary,
+            selectedIconColor: colors.primary,
             icon: require("../assets/icons/shop-icon.png"),
           }
         }
@@ -124,8 +124,8 @@ const bottomTabs = {
           bottomTab: {
             text: "Perfil",
             textColor: "white",
-            selectedTextColor: colors.secondary,
-            selectedIconColor: colors.secondary,
+            selectedTextColor: colors.primary,
+            selectedIconColor: colors.primary,
             icon: require("../assets/icons/user_white.png"),
           }
         }
