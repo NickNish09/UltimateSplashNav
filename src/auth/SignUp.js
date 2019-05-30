@@ -57,13 +57,13 @@ class SignUp extends Component {
             ToastAndroid.show('Cadastro feito com sucesso! Entrando...', ToastAndroid.SHORT);
             self.setCentralState({ user: response.data, userSignedIn: true });
             self.signInSuccess(response.data.token);
-            this.setState({isSigninInProgress: false});
+            self.setState({isSigninInProgress: false});
             // self.setState({spinner: false});
           })
           .catch(function (error) {
             ToastAndroid.show('Erro ao se cadastrar', ToastAndroid.SHORT);
             console.log('erro: '+error);
-            this.setState({isSigninInProgress: false});
+            self.setState({isSigninInProgress: false});
             // self.setState({spinner: false});
           });
       } catch (err) {
