@@ -6,10 +6,10 @@ export const dimensions = {
 };
 
 export const colors = {
-  primary: "#fce83c",
-  primary_dark: "#f97613",
-  secondary: "#FF4804",
-  tertiary: "#FF4804",
+  primary: "#2d8fce",
+  primary_dark: "#170030",
+  secondary: "#347d94",
+  tertiary: "#760080",
   dark: "#171718",
   light_gray: "#929292",
   light_green: "#54c442",
