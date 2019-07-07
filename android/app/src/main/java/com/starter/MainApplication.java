@@ -1,4 +1,4 @@
-package com.skinsgratis;
+package com.starter;
 
 import android.app.Application;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
