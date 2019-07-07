@@ -1,4 +1,4 @@
-rootProject.name = 'SkinsGratis'
+rootProject.name = 'Starter'
 
 include ':app'
 include ':react-native-navigation'

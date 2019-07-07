@@ -1,4 +1,4 @@
-package com.skinsgratis;
+package com.starter;
 
 import com.reactnativenavigation.NavigationActivity;
 import org.devio.rn.splashscreen.SplashScreen; // here
@@ -14,6 +14,6 @@ public class MainActivity extends NavigationActivity {
 
     //@Override
     protected String getMainComponentName() {
-        return "SkinsGratis";
+        return "Starter";
     }
 }

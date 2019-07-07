@@ -123,7 +123,7 @@ class SignIn extends Component {
               letterSpacing: 3
             }}
           >
-            SKINS
+            STARTER
             <Text
               style={{
                 color: colors.secondary,
@@ -132,7 +132,7 @@ class SignIn extends Component {
                 letterSpacing: 3
               }}
             >
-              GRÁTIS
+              PROJECT
             </Text>
           </Text>
         </View>

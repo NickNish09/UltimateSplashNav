@@ -58,7 +58,6 @@ class App extends Component {
     return (
       <View style={styles.container}>
         <ImageBackground source={require('./src/assets/images/splash_background.png')} style={styles.backgroundImage}>
-          <Image style={{height: 100, width: '100%'}} source={require('./src/assets/images/fenix_logo.png')}/>
         </ImageBackground>
       </View>
     );

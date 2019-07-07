@@ -12,7 +12,7 @@ const bottomTabs = {
               options: {
                 topBar: {
                   title: {
-                    text: "Raspadinha",
+                    text: "Home",
                     alignment: "center",
                     color: 'white'
                   },
@@ -26,7 +26,7 @@ const bottomTabs = {
         ],
         options: {
           bottomTab: {
-            text: "Raspadinha",
+            text: "Home",
             textColor: "white",
             selectedTextColor: colors.primary,
             selectedIconColor: colors.primary,
@@ -40,11 +40,11 @@ const bottomTabs = {
         children: [
           {
             component: {
-              name: "Giveaway",
+              name: "Screen1",
               options: {
                 topBar: {
                   title: {
-                    text: "Prêmios",
+                    text: "Screen 1",
                     alignment: "center",
                     color: 'white'
                   },
@@ -58,7 +58,7 @@ const bottomTabs = {
         ],
         options: {
           bottomTab: {
-            text: "Prêmios",
+            text: "Screen 1",
             textColor: "white",
             selectedTextColor: colors.primary,
             selectedIconColor: colors.primary,
@@ -72,11 +72,11 @@ const bottomTabs = {
         children: [
           {
             component: {
-              name: "Sale",
+              name: "Screen2",
               options: {
                 topBar: {
                   title: {
-                    text: "Loja",
+                    text: "Screen 2",
                     alignment: "center",
                     color: 'white'
                   },
@@ -90,7 +90,7 @@ const bottomTabs = {
         ],
         options: {
           bottomTab: {
-            text: "Loja",
+            text: "Screen 2",
             textColor: "white",
             selectedTextColor: colors.primary,
             selectedIconColor: colors.primary,

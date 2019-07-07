@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styles from "./Styles";
-import {View, ToastAndroid, Alert, ActivityIndicator} from "react-native";
+import {View, ToastAndroid, Alert, ActivityIndicator, ScrollView} from "react-native";
 import { colors, fonts } from "../styles/base";
 import { Input, Text, Divider, Button } from "react-native-elements";
 import api from "../services/api";
@@ -19,7 +19,7 @@ class SignUp extends Component {
       password: "",
       password_confirmation: "",
       firsName: "",
-      nickName: "",
+      lastName: "",
       isSigninInProgress: false
     }
   }
@@ -38,19 +38,19 @@ class SignUp extends Component {
     const email = this.state.email;
     const password = this.state.password;
     const name = this.state.firstName;
-    const nick_name = this.state.nickName;
+    const last_name = this.state.lastName;
     this.setState({isSigninInProgress: true});
     // this.setState({spinner: true});
 
-    if(email !== "" && password !== "" && name !== "" && nick_name !== ""){
+    if(email !== "" && password !== "" && name !== "" && last_name !== ""){
       try {
         // login with provider
         api.post("v1/cadastro.json", {
           user: {
             email: email,
             password: password,
-            name: name,
-            nick: nick_name,
+            first_name: name,
+            last_name: last_name,
           }
         })
           .then(function (response) {
@@ -87,7 +87,7 @@ class SignUp extends Component {
     let self = this;
 
     return (
-      <View
+      <ScrollView
         style={[
           styles.container,
           { backgroundColor: colors.dark, paddingVertical: 20 }
@@ -103,7 +103,7 @@ class SignUp extends Component {
               letterSpacing: 3
             }}
           >
-            SKINS
+            STARTER
             <Text
               style={{
                 color: colors.secondary,
@@ -112,7 +112,7 @@ class SignUp extends Component {
                 letterSpacing: 3
               }}
             >
-              GRÁTIS
+              PROJECT
             </Text>
           </Text>
         </View>
@@ -150,9 +150,9 @@ class SignUp extends Component {
             inputContainerStyle={{ borderBottomWidth: 0 }}
           />
           <Input
-            placeholder="Nick no Lol"
-            onChangeText={nickName => this.setState({ nickName })}
-            value={this.state.nickName}
+            placeholder="Sobrenome"
+            onChangeText={lastName => this.setState({ lastName })}
+            value={this.state.lastName}
             placeholderTextColor="white"
             inputStyle={{
               backgroundColor: colors.dark_gray,
@@ -232,7 +232,7 @@ class SignUp extends Component {
           /> : <ActivityIndicator size="large" color={colors.primary} />
         }
 
-      </View>
+      </ScrollView>
     );
   }
 }
