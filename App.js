@@ -9,6 +9,13 @@ import {Image} from "react-native-elements";
 
 class App extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      token: ""
+    };
+  }
+
   async componentDidMount(){
     await this.loadToken();
     api.defaults.headers.common["Authorization"] = this.state.token;
